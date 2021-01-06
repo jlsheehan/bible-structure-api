@@ -1,12 +1,31 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id "com.moonlitdoor.git-version" version "0.1.1"
 }
 
 group 'bible'
-version '1.0'
+version gitVersion
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "sftp://192.168.1.14:22/srv/repository"
+            credentials {
+                username "$repoUser"
+                password "$repoPass"
+            }
+        }
+    }
 }
 
 dependencies {
