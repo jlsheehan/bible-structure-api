@@ -1,7 +1,5 @@
 package bible;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,7 +10,7 @@ public class CitationTest {
     public void build() throws CitationIncompleteException {
         String result = "Gen. 1:1-20:18";
         Citation citation = Citation.newCitation()
-                .book(Book.GENESIS)
+                .book(BookName.GENESIS)
                 .startChapter(1)
                 .startVerse(1)
                 .endChapter(20)

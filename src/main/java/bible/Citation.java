@@ -13,7 +13,7 @@ public class Citation {
 
     private static final String citationPattern = "(?<book>(?<abbrev>(?<prefix>[1-3][ ])?[A-Z][a-z]{1,5})[\\.])(?<chapVerse>[ ](?<lowRange>(?<startChapter>[1-9][0-9]*)([\\:](?<startVerse>[1-9][0-9]*))?)(?<highRange>(?:[-])(?<endChapter>[1-9][0-9]*)((?:[\\:])(?<endVerse>[1-9][0-9]*))?)?)?";
     private static Logger staticLogger = LoggerFactory.getLogger(Citation.class);
-    private Book book;
+    private BookName bookName;
     private Optional<Integer> startChapter;
     private Optional<Integer> startVerse;
     private Optional<Integer> endChapter;
@@ -52,7 +52,7 @@ public class Citation {
         Matcher matcher = pattern.matcher(citationString);
         try {
             if (matcher.find()) {
-                Citation citation = new Citation().book(Book.valueOfAbbreviation(matcher.group("abbrev")));
+                Citation citation = new Citation().book(BookName.valueOfAbbreviation(matcher.group("abbrev")));
                 if (matcher.group("startChapter") != null)
                     citation.startChapter(Integer.valueOf(matcher.group("startChapter")));
                 if (matcher.group("startVerse") != null)
@@ -77,8 +77,8 @@ public class Citation {
         return new Citation();
     }
 
-    public Citation book(Book book) {
-        this.book = book;
+    public Citation book(BookName bookName) {
+        this.bookName = bookName;
         return this;
     }
 
@@ -111,26 +111,26 @@ public class Citation {
     }
 
     public String build() throws CitationIncompleteException {
-        if (book == null) throw new CitationIncompleteException();
+        if (bookName == null) throw new CitationIncompleteException();
         else {
             if (endVerse.isPresent() && endChapter.isPresent() && startVerse.isPresent() && startChapter.isPresent())
-                return citation(book.getAbbreviation(), startChapter.get(), startVerse.get(), endChapter.get(), endVerse.get());
+                return citation(bookName.getAbbreviation(), startChapter.get(), startVerse.get(), endChapter.get(), endVerse.get());
             else if (startChapter.isPresent() && endChapter.isPresent())
-                return citationChaptersOnly(book.getAbbreviation(), startChapter.get(), endChapter.get());
+                return citationChaptersOnly(bookName.getAbbreviation(), startChapter.get(), endChapter.get());
             else if (startChapter.isPresent() && startVerse.isPresent())
-                return citationSingleVerse(book.getAbbreviation(), startChapter.get(), startVerse.get());
-            else if (startChapter.isPresent()) return citationSingleChapter(book.getAbbreviation(), startChapter.get());
+                return citationSingleVerse(bookName.getAbbreviation(), startChapter.get(), startVerse.get());
+            else if (startChapter.isPresent()) return citationSingleChapter(bookName.getAbbreviation(), startChapter.get());
             else if (!startChapter.isPresent() && !startVerse.isPresent() && !endChapter.isPresent() && !endVerse.isPresent())
-                return citationBookOnly(book.getAbbreviation());
+                return citationBookOnly(bookName.getAbbreviation());
             else throw new CitationIncompleteException();
         }
     }
 
     public Map<String, String> buildParamMap() throws CitationIncompleteException {
         Map<String, String> params = new HashMap<>();
-        if (book == null) throw new CitationIncompleteException();
+        if (bookName == null) throw new CitationIncompleteException();
         else {
-            params.put("book", book.getAbbreviation());
+            params.put("book", bookName.getAbbreviation());
             if (endVerse.isPresent() && endChapter.isPresent() && startVerse.isPresent() && startChapter.isPresent()) {
                 startChapter.ifPresent(c -> params.put("startChapter", c.toString()));
                 startVerse.ifPresent(v -> params.put("startVerse", v.toString()));

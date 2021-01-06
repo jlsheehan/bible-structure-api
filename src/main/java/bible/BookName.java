@@ -3,7 +3,7 @@ package bible;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public enum Book {
+public enum BookName {
     GENESIS("Genesis", new String[] {"Gen"}, 50),
     EXODUS("Exodus", new String[] {"Ex"}, 40),
     LEVITICUS("Leviticus", new String[] {"Lev"}, 27),
@@ -75,7 +75,7 @@ public enum Book {
     private final String[] abbreviations;
     private final Integer numChapters;
 
-    Book(String title, String[] abbreviations, Integer numChapters) {
+    BookName(String title, String[] abbreviations, Integer numChapters) {
         this.title = title;
         this.abbreviations = abbreviations;
         this.numChapters = numChapters;
@@ -101,8 +101,8 @@ public enum Book {
         return chapter <= numChapters;
     }
 
-    public static Book valueOfAbbreviation(String abbreviationString) throws BookNotFoundException {
-        return Arrays.stream(Book.values())
+    public static BookName valueOfAbbreviation(String abbreviationString) throws BookNotFoundException {
+        return Arrays.stream(BookName.values())
                 .filter(b -> b.matches(abbreviationString.strip().toLowerCase()))
                 .findFirst()
                 .orElseThrow(BookNotFoundException::new);

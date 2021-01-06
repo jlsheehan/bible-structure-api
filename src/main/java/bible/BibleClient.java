@@ -2,6 +2,7 @@ package bible;
 
 public interface BibleClient {
 
-    String getText(Citation citation) throws CitationNotFoundException;
-    String getText(String citation) throws CitationNotFoundException;
+    Passage getPassage(Citation citation) throws CitationNotFoundException;
+    Chapter getChapter(Citation citation) throws CitationNotFoundException;
+    Verse getVerse(Citation citation) throws CitationNotFoundException;
 }
