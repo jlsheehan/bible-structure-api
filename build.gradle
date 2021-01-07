@@ -1,11 +1,21 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id "com.moonlitdoor.git-version" version "0.1.1"
+    id 'com.palantir.git-version' version '0.12.3'
 }
 
 group 'bible'
-version gitVersion
+version gitVersion()
+versionDetails = versionDetails()
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Bible Structure API',
+                    'Implementation-Version': version,
+                    'Specification-Title': 'bible.bible-structure-api',
+                    'Specification-Version': versionDetails.lastTag
+    }
+}
 
 repositories {
     mavenCentral()
