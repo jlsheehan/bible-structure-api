@@ -6,14 +6,13 @@ plugins {
 
 group 'bible'
 version gitVersion()
-versionDetails = versionDetails()
 
 jar {
     manifest {
         attributes 'Implementation-Title': 'Bible Structure API',
-                    'Implementation-Version': version,
+                    'Implementation-Version': archiveVersion,
                     'Specification-Title': 'bible.bible-structure-api',
-                    'Specification-Version': versionDetails.lastTag
+                    'Specification-Version': versionDetails().lastTag
     }
 }
 
