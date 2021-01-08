@@ -1,18 +1,23 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'com.palantir.git-version' version '0.12.3'
+    id 'org.ajoberstar.reckon' version '0.13.0'
 }
 
 group 'bible'
-version gitVersion()
+//version '1.0'
+
+reckon {
+    scopeFromProp()
+    stageFromProp('dev', 'release')
+}
 
 jar {
     manifest {
         attributes 'Implementation-Title': 'Bible Structure API',
                     'Implementation-Version': archiveVersion,
                     'Specification-Title': 'bible.bible-structure-api',
-                    'Specification-Version': versionDetails().lastTag
+                    'Specification-Version': '1.0'
     }
 }
 
