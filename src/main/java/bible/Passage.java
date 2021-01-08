@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Passage {
 
-    List<Verse> verses;
+    private List<Verse> verses;
 
     public Passage() {
         verses = new ArrayList<>();
@@ -22,5 +22,9 @@ public class Passage {
 
     public Integer getSize() {
         return verses.size();
+    }
+
+    public void add(Verse verse) {
+        verses.add(verse);
     }
 }
