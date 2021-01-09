@@ -1,30 +1,29 @@
 package bible;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Passage {
 
-    private List<Verse> verses;
+    private Citation citation;
+    private Map<Integer,String> texts;
 
-    public Passage() {
-        verses = new ArrayList<>();
+    public Passage(Citation citation, Map<Integer,String> texts) {
+        this.citation = citation;
+        this.texts = texts;
     }
 
-    public Passage(List<Verse> verses) {
-        this();
-        this.verses.addAll(verses);
-    }
-
-    public List<Verse> getVerses() {
-        return verses;
+    public Map<Integer,String> getTexts() {
+        return texts;
     }
 
     public Integer getSize() {
-        return verses.size();
+        return texts.size();
     }
 
-    public void add(Verse verse) {
-        verses.add(verse);
+    public void add(Integer verseNumber, String text) {
+        texts.put(verseNumber, text);
     }
 }
