@@ -9,7 +9,7 @@ group 'bible'
 
 reckon {
     scopeFromProp()
-    stageFromProp('dev', 'release')
+    stageFromProp('dev', 'final')
 }
 
 jar {
