@@ -1,13 +1,6 @@
 package bible;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Citation {
 
@@ -16,13 +9,6 @@ public class Citation {
     private Optional<Integer> startVerse;
     private Optional<Integer> endChapter;
     private Optional<Integer> endVerse;
-
-//    Citation() {
-//        startChapter = Optional.empty();
-//        startVerse = Optional.empty();
-//        endChapter = Optional.empty();
-//        endVerse = Optional.empty();
-//    }
 
     Citation(BookName bookName, Optional<Integer> startChapter, Optional<Integer> startVerse, Optional<Integer> endChapter, Optional<Integer> endVerse) {
         this.bookName = bookName;
