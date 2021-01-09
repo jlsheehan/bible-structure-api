@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class CitationTest {
 
     @Test
-    public void build() throws CitationIncompleteException {
+    public void testVerseCitation() throws CitationIncompleteException {
         String result = "Gen. 1:1-20:18";
         Citation citation = Citation.newCitation()
                 .book(BookName.GENESIS)
@@ -15,6 +15,18 @@ public class CitationTest {
                 .startVerse(1)
                 .endChapter(20)
                 .endVerse(18)
+                .build();
+        assertEquals(result, citation.toText());
+    }
+
+    @Test
+    public void testPassageCitation() throws CitationIncompleteException {
+        String result = "Gen. 1:1-10";
+        Citation citation = Citation.newCitation()
+                .book(BookName.GENESIS)
+                .chapter(1)
+                .startVerse(1)
+                .endVerse(10)
                 .build();
         assertEquals(result, citation.toText());
     }

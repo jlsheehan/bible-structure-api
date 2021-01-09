@@ -4,11 +4,11 @@ import java.util.Optional;
 
 public class Citation {
 
-    private BookName bookName;
-    private Optional<Integer> startChapter;
-    private Optional<Integer> startVerse;
-    private Optional<Integer> endChapter;
-    private Optional<Integer> endVerse;
+    private final BookName bookName;
+    private final Optional<Integer> startChapter;
+    private final Optional<Integer> startVerse;
+    private final Optional<Integer> endChapter;
+    private final Optional<Integer> endVerse;
 
     Citation(BookName bookName, Optional<Integer> startChapter, Optional<Integer> startVerse, Optional<Integer> endChapter, Optional<Integer> endVerse) {
         this.bookName = bookName;
@@ -43,6 +43,8 @@ public class Citation {
         else {
             if (endVerse.isPresent() && endChapter.isPresent() && startVerse.isPresent() && startChapter.isPresent())
                 return citation(bookName.getAbbreviation(), startChapter.get(), startVerse.get(), endChapter.get(), endVerse.get());
+            else if (startChapter.isPresent() && startVerse.isPresent() && endVerse.isPresent() && !endChapter.isPresent())
+                return citationPassage(bookName.getAbbreviation(), startChapter.get(), startVerse.get(), endVerse.get());
             else if (startChapter.isPresent() && endChapter.isPresent())
                 return citationChaptersOnly(bookName.getAbbreviation(), startChapter.get(), endChapter.get());
             else if (startChapter.isPresent() && startVerse.isPresent())
@@ -71,8 +73,12 @@ public class Citation {
     }
 
     private static String citation(String abbreviation, Integer chapter1, Integer verse1, Integer chapter2, Integer verse2) {
-        if (chapter1 == chapter2) return String.format("%s. %d:%d-%d", abbreviation, chapter1, verse1, verse2);
+        if (chapter1.equals(chapter2)) return citationPassage(abbreviation, chapter1, verse1, verse2);
         else return String.format("%s. %d:%d-%d:%d", abbreviation, chapter1, verse1, chapter2, verse2);
+    }
+
+    private static String citationPassage(String abbreviation, Integer chapter, Integer verse1, Integer verse2) {
+        return String.format("%s. %d:%d-%d", abbreviation, chapter, verse1, verse2);
     }
 
     public static CitationBuilder newCitation() {
