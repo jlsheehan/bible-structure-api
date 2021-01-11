@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         GRGIT_CREDS = credentials('Bitbucket')
-        GRGIT_USER = "$GRGIT_CREDS_USR"
-        GRGIT_PASS = "$GRGIT_CREDS_PSW"
+        GRGIT_USER = '$GRGIT_CREDS_USR'
+        GRGIT_PASS = '$GRGIT_CREDS_PSW'
     }
     stages {
         stage('Build') {

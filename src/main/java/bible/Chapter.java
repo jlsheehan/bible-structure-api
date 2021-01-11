@@ -1,10 +1,10 @@
 package bible;
 
-import java.util.Map;
+import java.util.SortedMap;
 
 public class Chapter extends Passage {
 
-    public Chapter(Citation citation, Map<Integer, String> texts) {
+    public Chapter(Citation citation, SortedMap<Integer, String> texts) {
         super(citation, texts);
     }
 

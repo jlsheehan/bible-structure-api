@@ -1,21 +1,18 @@
 package bible;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.SortedMap;
 
 public class Passage {
 
     private Citation citation;
-    private Map<Integer,String> texts;
+    private SortedMap<Integer,String> texts;
 
-    public Passage(Citation citation, Map<Integer,String> texts) {
+    public Passage(Citation citation, SortedMap<Integer,String> texts) {
         this.citation = citation;
         this.texts = texts;
     }
 
-    public Map<Integer,String> getTexts() {
+    public SortedMap<Integer,String> getTexts() {
         return texts;
     }
 
