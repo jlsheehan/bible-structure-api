@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh './gradlew build'
+                sh './mvnw package'
             }
         }
         stage("Release") {
@@ -16,7 +16,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh './gradlew build -Preckon.scope=minor -Preckon.stage=final reckonTagPush publish'
+                sh './mvnw deploy'
             }
         }
         stage("Dev Release") {
