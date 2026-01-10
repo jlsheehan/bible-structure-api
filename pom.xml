@@ -106,7 +106,6 @@
   <distributionManagement>
     <repository>
       <id>nexus-releases</id>
-      <layout>maven2</layout>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -117,7 +116,6 @@
     </repository>
     <snapshotRepository>
       <id>nexus-snapshots</id>
-      <layout>maven2</layout>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -132,7 +130,6 @@
     <repository>
       <id>nexus</id>
       <url>http://espresso.local/repository/maven-public/</url>
-      <layout>maven2</layout>
       <releases>
         <enabled>true</enabled>
       </releases>
