@@ -102,4 +102,44 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus-releases</id>
+      <layout>maven2</layout>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>http://espresso.local/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <layout>maven2</layout>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <url>http://espresso.local/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>nexus</id>
+      <url>http://espresso.local/repository/maven-public/</url>
+      <layout>maven2</layout>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
 </project>

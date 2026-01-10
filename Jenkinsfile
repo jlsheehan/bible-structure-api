@@ -16,7 +16,9 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh './mvnw deploy'
+                withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh './mvnw deploy -Dnexus.username=$USERNAME -Dnexus.password=$PASSOWRD'
+                }
             }
         }
         stage("Dev Release") {
