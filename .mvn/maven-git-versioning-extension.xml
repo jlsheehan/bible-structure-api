@@ -4,15 +4,12 @@
 
     <refs>
         <ref type="branch">
-            <pattern>.+</pattern>
-            <version>${ref}-SNAPSHOT</version>
-            <properties>
-                <foo>${ref}</foo>
-            </properties>
+<!--            <pattern>.+</pattern>-->
+            <version>${describe.tag.version.major}.${describe.tag.version.minor}.${describe.tag.version.patch.next}${describe.distance.snapshot}</version>
         </ref>
 
         <ref type="tag">
-            <pattern><![CDATA[v(?<version>.*)]]></pattern>
+<!--            <pattern><![CDATA[v(?<version>.*)]]></pattern>-->
             <version>${ref.version}</version>
         </ref>
     </refs>

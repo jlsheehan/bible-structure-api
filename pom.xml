@@ -112,7 +112,7 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-      <url>http://espresso.local/repository/maven-releases/</url>
+      <url>http://espresso.local/nexus/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
       <id>nexus-snapshots</id>
@@ -122,14 +122,14 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-      <url>http://espresso.local/repository/maven-snapshots/</url>
+      <url>http://espresso.local/nexus/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
   <repositories>
     <repository>
       <id>nexus</id>
-      <url>http://espresso.local/repository/maven-public/</url>
+      <url>http://espresso.local/nexus/repository/maven-public/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
