@@ -4,12 +4,10 @@
 
     <refs>
         <ref type="branch">
-<!--            <pattern>.+</pattern>-->
             <version>${describe.tag.version.major}.${describe.tag.version.minor}.${describe.tag.version.patch.next}${describe.distance.snapshot}</version>
         </ref>
 
         <ref type="tag">
-<!--            <pattern>.+</pattern>-->
             <version>${ref}</version>
         </ref>
     </refs>

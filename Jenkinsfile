@@ -9,11 +9,11 @@ pipeline {
         }
         stage("Release") {
             when {
-                branch 'master'
+                tag '*'
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                    sh './mvnw deploy -Dnexus.username=$USERNAME -Dnexus.password=$PASSOWRD'
+                    sh './mvnw deploy -Dnexus-releases.username=$USERNAME -Dnexus-releases.password=$PASSOWRD'
                 }
             }
         }
