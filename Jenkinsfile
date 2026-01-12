@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                    sh './mvnw package deploy -Dnexus-releases.username=$USERNAME -Dnexus-releases.password=$PASSWORD -Dnexus-snapshots.username=$USERNAME -Dnexus-snapshots.password=$PASSWORD'
+                    sh './mvnw package deploy -Dnexus.username=$USERNAME -Dnexus.password=$PASSWORD'
                 }
             }
         }
