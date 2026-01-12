@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Release") {
             when {
-                tag comparator: 'REGEXP', pattern: '/\\d+\\.\\d+\\.\\d+/'
+                buildingTag()
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
