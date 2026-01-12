@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Release") {
             when {
-                expression { env.TAG_NAME =~ /\d+\.\d+\.\d+/ }
+                tag comparator: 'REGEXP', pattern: '/\\d+\\.\\d+\\.\\d+/'
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
