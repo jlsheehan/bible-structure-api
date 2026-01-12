@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Release") {
             when {
-                tag
+                tag ''
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
