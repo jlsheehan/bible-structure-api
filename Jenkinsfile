@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Release") {
             when {
-                tag "*"
+                environment name: 'TAG_NAME'
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
