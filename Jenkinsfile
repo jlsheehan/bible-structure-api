@@ -8,21 +8,10 @@ pipeline {
             }
         }
         stage("Release") {
-            when {
-                environment name: 'TAG_NAME'
-            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                    sh './mvnw deploy -Dnexus-releases.username=$USERNAME -Dnexus-releases.password=$PASSOWRD'
+                    sh './mvnw deploy -Dnexus-releases.username=$USERNAME -Dnexus-releases.password=$PASSOWRD -Dnexus-snapshots.username=$USERNAME -Dnexus-snapshots.password=$PASSOWRD'
                 }
-            }
-        }
-        stage("Dev Release") {
-            when {
-                branch 'development'
-            }
-            steps {
-                sh './gradlew build -Preckon.scope=minor -Preckon.stage=dev reckonTagPush publish'
             }
         }
     }
