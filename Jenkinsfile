@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Release") {
             when {
-                tag '*'
+                expression { TAG_NAME =~ /\d+\.\d+\.\d+/ }
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
