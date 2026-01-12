@@ -9,8 +9,8 @@
         </ref>
 
         <ref type="tag">
-<!--            <pattern><![CDATA[v(?<version>.*)]]></pattern>-->
-            <version>${ref.version}</version>
+<!--            <pattern>.+</pattern>-->
+            <version>${ref}</version>
         </ref>
     </refs>
 
